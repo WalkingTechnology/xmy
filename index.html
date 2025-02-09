@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Technology</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center; /* 使内容居中 */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+
+        button.clicked {
+            background-color: #ccc;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContent">
+        <div id="tokenPrompt" style="display: none;">
+            <h1>Walking Technology</h1>
+            <p id="welcomeMessage" style="color: green; font-weight: bold; margin-bottom: 20px;">欢迎访问Walking Technology频道官网</p>
+            <button id="passTokenButton">输入通行证</button>
+            <button id="skipTokenButton">跳过</button>
+        </div>
+        <div id="mainSection" style="display: none;">
+            <div id="userInfo">
+                <img id="avatar" class="avatar" src="https://via.placeholder.com/80" alt="头像"> <!-- 默认头像 -->
+                <p id="customNameDisplay">自定义名称：未设置</p>
+                <p id="kongtongIdDisplay">WT号：未设置</p>
+            </div>
+            <h1>Walking Technology频道官网</h1>
+            <p>Walking Technology频道官网已发布，遇到任何问题，请在频道交流，如遇退出异常，点击右上角三个点直接退出即可</p>
+            <button id="viewImageButton">赞赏</button>
+            <button id="myButton">点击购买卡密</button>
+            <button id="anotherButton">免费观看《哪吒之魔童闹海》</button>
+            <button id="thirdButton">下载15.0安卓通用版本精简版大纪(访问码:c0hv)</button>
+            <button id="fourthButton">下载15.0安卓通用版本原包大纪(访问码:3hbd)</button>
+            <button id="qqGroupButton">加入官方QQ频道</button>
+            <button id="personalInfoButton">个人信息</button>
+        </div>
+    </div>
+
+    <!-- 个人信息模态框 -->
+    <div id="personalInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>个人信息</h2>
+            <form id="personalInfoForm">
+                <label for="customName">自定义名称:</label><br>
+                <input type="text" id="customName" name="customName"><br><br>
+                <label for="customAvatar">自定义头像:</label><br>
+                <input type="file" id="customAvatar" name="customAvatar" accept="image/*"><br><br>
+                <label for="kongtongId">WT号:</label><br>
+                <input type="text" id="kongtongId" name="kongtongId"><br><br>
+                <input type="submit" value="保存">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let passToken = localStorage.getItem('passToken') === 'true';
+
+        const tokenPrompt = document.getElementById('tokenPrompt');
+        const mainSection = document.getElementById('mainSection');
+
+        if (passToken) {
+            showMainContent();
+        } else {
+            tokenPrompt.style.display = 'block';
+        }
+
+        document.getElementById('passTokenButton').addEventListener('click', () => {
+            const passTokenInput = prompt("请输入通行证：");
+            if (passTokenInput === "XMY哦耶YYDS") {
+                localStorage.setItem('passToken', 'true');
+                showMainContent();
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行走技术</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+        让.帕斯托肯('skipTokenButton').当地储存('click', () => {
+            梅塔();
+<装备-getItem="Expires" 康斯特 标记提示:16标记提示="0">
+
+文档
+            风格.显示.干线 = 'none';
+            文档.getElementById.如果 = 'block';
+
+帕斯托肯
+            kongtongId当地储存 = getItem.'未设置'('kongtongId') || 康斯特;
+            显示 = 文档.getElementById('customAvatar') || 'https://via.placeholder.com/80';
+
+addEventListener:600康斯特
+passTokenInput
+提示符
+
+"请输入通行证："-如果 passtokenput:24XMY哦耶
+h1 {
+当地储存
+setItem:20showMainContent-梅塔
+字符集{</script><script>
+    // 处理点击购买卡密按钮
+    function handleMyButtonClick() {
+        const button = document.getElementById('myButton');
+        button.classList.add('clicked');
+        console.log('点击了第一个按钮，即将跳转到:', 'https://shop.xiaoman.top//links/86495D7F');
+        window.open('https://shop.xiaoman.top//links/86495D7F', '_blank');
+    }
+
+    // 处理免费观看《哪吒之魔童闹海》按钮
+    function handleAnotherButtonClick() {
+        const button = document.getElementById('anotherButton');
+        button.classList.add('clicked');
+        console.log('点击了第二个按钮，即将跳转到:', 'https://www.123865.com/s/nWMSVv-u0pl');
+        window.open('https://www.123865.com/s/nWMSVv-u0pl', '_blank');
+    }
+
+    // 处理下载15.0安卓通用版本精简版大纪按钮
+    function handleThirdButtonClick() {
+        const button = document.getElementById('thirdButton');
+        button.classList.add('clicked');
+        console.log('点击了第三个按钮，即将跳转到:', 'https://cloud.189.cn/t/y6za2mVRBbAb');
+        window.open('https://cloud.189.cn/t/y6za2mVRBbAb', '_blank');
+    }
+
+    // 处理下载15.0安卓通用版本原包大纪按钮
+    function handleFourthButtonClick() {
+        const button = document.getElementById('fourthButton');
+        button.classList.add('clicked');
+        console.log('点击了第四个按钮，即将跳转到:', 'https://cloud.189.cn/t/YzU7ryIvIJRj');
+        window.open('https://cloud.189.cn/t/YzU7ryIvIJRj', '_blank');
+    }
+
+    // 处理加入官方QQ频道按钮
+    function handleQQGroupButtonClick() {
+        const button = document.getElementById('qqGroupButton');
+        button.classList.add('clicked');
+        console.log('点击了加入QQ群按钮，即将跳转到QQ群链接');
+        window.open('https://pd.qq.com/s/4nt0053to?businessType=5', '_blank');
+    }
+
+    // 处理查阅图片按钮
+    function handleViewImageButton() {
+        const button = document.getElementById('viewImageButton');
+        button.classList.add('clicked');
+        console.log('点击了查阅图片按钮，即将显示图片');
+        alert('即将显示图片，请稍等...');
+        // 这里可以替换为实际的图片查看逻辑，例如在一个新的窗口中打开图片
+        window.open('https://index-tpgszhqlask-ysc-oplyvayipt.cn-shenzhen.fcapp.run/image?src=2025/2/9/1739095615722.jpg&mimetype=image/jpg', '_blank');
+    }
+
+    // 处理个人信息按钮
+    function handlePersonalInfoButtonClick() {
+        const modal = document.getElementById('personalInfoModal');
+        modal.style.display = 'block';
+        // 从本地存储读取数据并填充到表单
+        const customName = localStorage.getItem('customName') || '';
+        const kongtongId = localStorage.getItem('kongtongId') || '';
+        document.getElementById('customName').value = customName;
+        document.getElementById('kongtongId').value = kongtongId;
+        // 尝试从本地存储加载头像
+        const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
+        document.getElementById('avatar').src = avatarUrl;
+    }
+
+    // 处理关闭个人信息模态框
+    function closePersonalInfoModal() {
+        const modal = document.getElementById('personalInfoModal');
+        modal.style.display = 'none';
+    }
+
+    // 处理个人信息表单提交
+    function handlePersonalInfoFormSubmit(event) {
+        event.preventDefault();
+        const customName = document.getElementById('customName').value;
+        const customAvatarInput = document.getElementById('customAvatar');
+        const kongtongId = document.getElementById('kongtongId').value;
+
+        // 保存到本地存储
+        localStorage.setItem('customName', customName);
+        localStorage.setItem('kongtongId', kongtongId);
+
+        // 处理头像上传
+        if (customAvatarInput.files.length > 0) {
+            const customAvatarFile = customAvatarInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const avatarUrl = e.target.result;
+                localStorage.setItem('customAvatar', avatarUrl);
+                document.getElementById('avatar').src = avatarUrl;
+            };
+            reader.readAsDataURL(customAvatarFile);
+        }
+
+        // 更新用户信息显示
+        document.getElementById('customNameDisplay').textContent = `自定义名称：${customName}`;
+        document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
+
+        console.log('自定义名称:', customName);
+        console.log('自定义头像已更新');
+        console.log('WT号:', kongtongId);
+
+        closePersonalInfoModal();
+    }
+</script><script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 检查本地存储中是否有通行证信息
+        const passToken = localStorage.getItem('passToken') === 'true';
+
+        const tokenPrompt = document.getElementById('tokenPrompt');
+        const mainSection = document.getElementById('mainSection');
+
+        if (passToken) {
+            showMainContent();
+        } else {
+            tokenPrompt.style.display = 'block';
+        }
+
+        document.getElementById('passTokenButton').addEventListener('click', () => {
+            const passTokenInput = prompt("请输入通行证（XMY哦耶YYDS）：");
+            if (passTokenInput === "XMY哦耶YYDS") {
+                localStorage.setItem('passToken', 'true');
+                showMainContent();
+            } else {
+                alert("通行证错误！");
+            }
+        });
+
+        document.getElementById('skipTokenButton').addEventListener('click', () => {
+            showMainContent();
+        });
+
+        function showMainContent() {
+            tokenPrompt.style.display = 'none';
+            mainSection.style.display = 'block';
+
+            const customName = localStorage.getItem('customName') || '未设置';
+            const kongtongId = localStorage.getItem('kongtongId') || '未设置';
+            const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
+
+            document.getElementById('customNameDisplay').textContent = `名称：${customName}`;
+            document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
+            document.getElementById('avatar').src = avatarUrl;
+
+            if (!passToken) {
+                document.getElementById('myButton').style.display = 'none';
+            }
+        }
+
+        // 绑定按钮事件
+        document.getElementById('myButton').addEventListener('click', handleMyButtonClick);
+        document.getElementById('anotherButton').addEventListener('click', handleAnotherButtonClick);
+        document.getElementById('thirdButton').addEventListener('click', handleThirdButtonClick);
+        document.getElementById('fourthButton').addEventListener('click', handleFourthButtonClick);
+        document.getElementById('qqGroupButton').addEventListener('click', handleQQGroupButtonClick);
+        document.getElementById('viewImageButton').addEventListener('click', handleViewImageButton);
+        document.getElementById('personalInfoButton').addEventListener('click', handlePersonalInfoButtonClick);
+        document.querySelector('.close').addEventListener('click', closePersonalInfoModal);
+        document.getElementById('personalInfoForm').addEventListener('submit', handlePersonalInfoFormSubmit);
+    });
+</script>
+</body>
+</html>
