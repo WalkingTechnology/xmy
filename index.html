@@ -118,10 +118,10 @@
 <body>
     <div class="container" id="mainContent">
         <div id="tokenPrompt" style="display: none;">
-            <h1>Walking Technology</h1>
-            <p id="welcomeMessage" style="color: green; font-weight: bold; margin-bottom: 20px;">欢迎访问Walking Technology频道官网</p>
+            <h1>Walking Technology频道官网</h1>
+            <p id="welcomeMessage" style="color: green; font-weight: bold; margin-bottom: 20px;">欢迎访问Walking Technology频道官网！</p>
             <button id="passTokenButton">输入通行证</button>
-            <button id="skipTokenButton">跳过</button>
+            <button id="skipTokenButton">跳过通行证</button>
         </div>
         <div id="mainSection" style="display: none;">
             <div id="userInfo">
@@ -130,7 +130,7 @@
                 <p id="kongtongIdDisplay">WT号：未设置</p>
             </div>
             <h1>Walking Technology频道官网</h1>
-            <p>Walking Technology频道官网已发布，遇到任何问题，请在频道交流,官网会不定期更新</p>
+            <p>Walking Technology频道官网已发布,遇到任何问题请在频道交流,官网会不定期更新!</p>
             <button id="viewImageButton">赞赏</button>
             <button id="myButton">点击购买卡密</button>
             <button id="anotherButton">免费观看《哪吒之魔童闹海》</button>
@@ -141,22 +141,11 @@
         </div>
     </div>
 
-    <!-- 个人信息模态框 -->
-    <div id="personalInfoModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>个人信息</h2>
-            <form id="personalInfoForm">
-                <label for="customName">自定义名称:</label><br>
-                <input type="text" id="customName" name="customName"><br><br>
-                <label for="customAvatar">自定义头像:</label><br>
-                <input type="file" id="customAvatar" name="customAvatar" accept="image/*"><br><br>
-                <label for="kongtongId">WT号:</label><br>
-                <input type="text" id="kongtongId" name="kongtongId"><br><br>
-                <input type="submit" value="保存">
-            </form>
-        </div>
-    </div>
+    <!-- 背景音乐 -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="https://c2.cloud887325.com/1739101956378/175126/6a95b6aece33d23bd601f7800453776e.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
 
     <script>
         let passToken = localStorage.getItem('passToken') === 'true';
@@ -171,36 +160,36 @@
         }
 
         document.getElementById('passTokenButton').addEventListener('click', () => {
-            const passTokenInput = prompt("请输入通行证：");
+            const passTokenInput = prompt("请输入通行证(XMY哦耶YYDS)：");
             if (passTokenInput === "XMY哦耶YYDS") {
                 localStorage.setItem('passToken', 'true');
                 showMainContent();
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>行走技术</title>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+            } else {
+                alert("通行证错误！");
+            }
+        });
 
-        让.帕斯托肯('skipTokenButton').当地储存('click', () => {
-            梅塔();
-<装备-getItem="Expires" 康斯特 标记提示:16标记提示="0">
+        document.getElementById('skipTokenButton').addEventListener('click', () => {
+            showMainContent();
+        });
 
-文档
-            风格.显示.干线 = 'none';
-            文档.getElementById.如果 = 'block';
+        function showMainContent() {
+            tokenPrompt.style.display = 'none';
+            mainSection.style.display = 'block';
 
-帕斯托肯
-            kongtongId当地储存 = getItem.'未设置'('kongtongId') || 康斯特;
-            显示 = 文档.getElementById('customAvatar') || 'https://via.placeholder.com/80';
+            const customName = localStorage.getItem('customName') || '未设置';
+            const kongtongId = localStorage.getItem('kongtongId') || '未设置';
+            const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
 
-addEventListener:600康斯特
-passTokenInput
-提示符
+            document.getElementById('customNameDisplay').textContent = `自定义名称：${customName}`;
+            document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
+            document.getElementById('avatar').src = avatarUrl;
 
-"请输入通行证："-如果 passtokenput:24XMY哦耶
-h1 {
-当地储存
-setItem:20showMainContent-梅塔
-字符集{</script><script>
+            if (!passToken) {
+                document.getElementById('myButton').style.display = 'none';
+            }
+        }
+    </script><script>
     // 处理点击购买卡密按钮
     function handleMyButtonClick() {
         const button = document.getElementById('myButton');
@@ -304,7 +293,7 @@ setItem:20showMainContent-梅塔
 
         closePersonalInfoModal();
     }
-</script><script>
+    </script><script>
     document.addEventListener('DOMContentLoaded', function () {
         // 检查本地存储中是否有通行证信息
         const passToken = localStorage.getItem('passToken') === 'true';
