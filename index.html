@@ -319,7 +319,7 @@ setItem:20showMainContent-梅塔
         }
 
         document.getElementById('passTokenButton').addEventListener('click', () => {
-            const passTokenInput = prompt("请输入通行证（XMY哦耶YYDS）：");
+            const passTokenInput = prompt("请输入通行证：");
             if (passTokenInput === "XMY哦耶YYDS") {
                 localStorage.setItem('passToken', 'true');
                 showMainContent();
