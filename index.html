@@ -141,6 +141,23 @@
         </div>
     </div>
 
+    <!-- 个人信息模态框 -->
+    <div id="personalInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>个人信息</h2>
+            <form id="personalInfoForm">
+                <label for="customName">自定义名称:</label><br>
+                <input type="text" id="customName" name="customName"><br><br>
+                <label for="customAvatar">自定义头像:</label><br>
+                <input type="file" id="customAvatar" name="customAvatar" accept="image/*"><br><br>
+                <label for="kongtongId">WT号:</label><br>
+                <input type="text" id="kongtongId" name="kongtongId"><br><br>
+                <input type="submit" value="保存">
+            </form>
+        </div>
+    </div>
+
     <!-- 背景音乐 -->
     <audio id="backgroundMusic" autoplay loop>
         <source src="https://c2.cloud887325.com/1739101956378/175126/6a95b6aece33d23bd601f7800453776e.mp3" type="audio/mpeg">
@@ -189,7 +206,8 @@
                 document.getElementById('myButton').style.display = 'none';
             }
         }
-    </script><script>
+    </script>
+<script>
     // 处理点击购买卡密按钮
     function handleMyButtonClick() {
         const button = document.getElementById('myButton');
@@ -293,7 +311,8 @@
 
         closePersonalInfoModal();
     }
-    </script><script>
+</script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         // 检查本地存储中是否有通行证信息
         const passToken = localStorage.getItem('passToken') === 'true';
@@ -308,7 +327,7 @@
         }
 
         document.getElementById('passTokenButton').addEventListener('click', () => {
-            const passTokenInput = prompt("请输入通行证：");
+            const passTokenInput = prompt("请输入通行证(XMY哦耶YYDS)：");
             if (passTokenInput === "XMY哦耶YYDS") {
                 localStorage.setItem('passToken', 'true');
                 showMainContent();
@@ -329,7 +348,7 @@
             const kongtongId = localStorage.getItem('kongtongId') || '未设置';
             const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
 
-            document.getElementById('customNameDisplay').textContent = `名称：${customName}`;
+            document.getElementById('customNameDisplay').textContent = `自定义名称：${customName}`;
             document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
             document.getElementById('avatar').src = avatarUrl;
 
