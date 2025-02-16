@@ -1,58 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walking Technology</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         body {
-            font-size: 16px;
-            line-height: 1.5;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+            animation: fadeIn 1s ease-in-out;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            background: white;
             padding: 20px;
-            text-align: center; /* 使内容居中 */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #ff7e5f;
+            box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+        }
+
+        .gradient-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            transition: background 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+        }
+
+        .gradient-button:hover {
+            background: linear-gradient(to right, #ff6f47, #f9a65f);
+            box-shadow: 0 0 20px rgba(255, 111, 71, 0.7);
+        }
+
+        .gradient-button:active {
+            transform: scale(0.98);
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            color: #333;
+            text-align: left;
         }
 
         p {
             margin-bottom: 20px;
+            color: #666;
+            text-align: left;
         }
 
-        button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-        }
-
-        button.clicked {
-            background-color: #ccc;
-        }
-
-        /* 模态框样式 */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -62,10 +100,10 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fff;
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border-radius: 10px;
             width: 80%;
             max-width: 400px;
         }
@@ -83,117 +121,69 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* 头像样式 */
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: block;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container" id="mainContent">
-        <div id="tokenPrompt" style="display: none;">
-            <h1>Walking Technology频道官网</h1>
-            <p id="welcomeMessage" style="color: green; font-weight: bold; margin-bottom: 20px;">欢迎访问Walking Technology频道官网！</p>
-            <button id="passTokenButton">输入通行证</button>
-            <button id="skipTokenButton">跳过通行证</button>
+        <img id="avatar" class="avatar" src="https://via.placeholder.com/80" alt="头像">
+        <div class="text-center mt-2">
+            <p id="customNameDisplay" class="text-gray-600 font-semibold bg-gray-200 p-2 rounded-md inline-block">自定义名称：未设置</p>
+            <p id="kongtongIdDisplay" class="text-gray-600 font-semibold bg-gray-200 p-2 rounded-md inline-block mt-2">WT号：未设置</p>
         </div>
-        <div id="mainSection" style="display: none;">
-            <div id="userInfo">
-                <img id="avatar" class="avatar" src="https://via.placeholder.com/80" alt="头像"> <!-- 默认头像 -->
-                <p id="customNameDisplay">自定义名称：未设置</p>
-                <p id="kongtongIdDisplay">WT号：未设置</p>
-            </div>
-            <h1>Walking Technology频道官网</h1>
-            <p>Walking Technology频道官网已发布,遇到任何问题请在频道交流,官网会不定期更新!</p>
-            <button id="viewImageButton">赞赏</button>
-            <button id="myButton">点击购买卡密</button>
-            <button id="anotherButton">免费观看《哪吒之魔童闹海》</button>
-            <button id="thirdButton">下载15.0安卓通用版本精简版大纪(访问码:c0hv)</button>
-            <button id="fourthButton">下载15.0安卓通用版本原包大纪(访问码:3hbd)</button>
-            <button id="qqGroupButton">加入官方QQ频道</button>
-            <button id="personalInfoButton">个人信息</button>
-        </div>
+        <h1 class="text-2xl font-bold mb-4">Walking Technology 频道官网</h1>
+        <p class="text-gray-700">Walking Technology 频道官网已发布，遇到任何问题请在频道交流，官网会不定期更新！</p>
+        <!-- 功能按钮区域 -->
+        <button id="myButton" class="gradient-button bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800">
+            <i class="fas fa-shopping-cart mr-2"></i>点击购买卡密
+        </button>
+        <button id="anotherButton" class="gradient-button bg-gradient-to-r from-green-400 to-green-700 hover:from-green-500 hover:to-green-800">
+            <i class="fas fa-film mr-2"></i>免费观看《哪吒之魔童闹海》
+        </button>
+        <button id="thirdButton" class="gradient-button bg-gradient-to-r from-yellow-400 to-yellow-700 hover:from-yellow-500 hover:to-yellow-800">
+            <i class="fas fa-download mr-2"></i>下载15.0安卓通用版本精简版大纪(访问码:c0hv)
+        </button>
+        <button id="fourthButton" class="gradient-button bg-gradient-to-r from-purple-400 to-purple-700 hover:from-purple-500 hover:to-purple-800">
+            <i class="fas fa-download mr-2"></i>下载15.0安卓通用版本原包大纪(访问码:3hbd)
+        </button>
+        <button id="qqGroupButton" class="gradient-button bg-gradient-to-r from-blue-400 to-blue-700 hover:from-blue-500 hover:to-blue-800">
+            <i class="fab fa-qq mr-2"></i>加入官方QQ频道
+        </button>
+        <button id="personalInfoButton" class="gradient-button bg-gradient-to-r from-pink-400 to-pink-700 hover:from-pink-500 hover:to-pink-800">
+            <i class="fas fa-user mr-2"></i>个人信息
+        </button>
     </div>
 
     <!-- 个人信息模态框 -->
     <div id="personalInfoModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content bg-white p-6 rounded-lg shadow-md">
             <span class="close">&times;</span>
-            <h2>个人信息</h2>
+            <h2 class="text-2xl font-bold mb-4">个人信息</h2>
             <form id="personalInfoForm">
-                <label for="customName">自定义名称:</label><br>
-                <input type="text" id="customName" name="customName"><br><br>
-                <label for="customAvatar">自定义头像:</label><br>
-                <input type="file" id="customAvatar" name="customAvatar" accept="image/*"><br><br>
-                <label for="kongtongId">WT号:</label><br>
-                <input type="text" id="kongtongId" name="kongtongId"><br><br>
-                <input type="submit" value="保存">
+                <label for="customName" class="block mb-2">自定义名称:</label>
+                <input type="text" id="customName" name="customName" class="w-full p-2 border border-gray-300 rounded mb-4">
+                
+                <label for="customAvatar" class="block mb-2">自定义头像:</label>
+                <input type="file" id="customAvatar" name="customAvatar" accept="image/*" class="w-full p-2 border border-gray-300 rounded mb-4">
+                
+                <label for="kongtongId" class="block mb-2">WT号:</label>
+                <input type="text" id="kongtongId" name="kongtongId" class="w-full p-2 border border-gray-300 rounded mb-4">
+                
+                <input type="submit" value="保存" class="gradient-button bg-gradient-to-r from-teal-400 to-teal-700 hover:from-teal-500 hover:to-teal-800">
             </form>
         </div>
     </div>
-
     <!-- 背景音乐 -->
     <audio id="backgroundMusic" autoplay loop>
         <source src="https://c2.cloud887325.com/1739101956378/175126/6a95b6aece33d23bd601f7800453776e.mp3" type="audio/mpeg">
         您的浏览器不支持音频播放。
     </audio>
-
     <script>
-        let passToken = localStorage.getItem('passToken') === 'true';
-
-        const tokenPrompt = document.getElementById('tokenPrompt');
-        const mainSection = document.getElementById('mainSection');
-
-        if (passToken) {
-            showMainContent();
-        } else {
-            tokenPrompt.style.display = 'block';
-        }
-
-        document.getElementById('passTokenButton').addEventListener('click', () => {
-            const passTokenInput = prompt("请输入通行证(XMY哦耶YYDS)：");
-            if (passTokenInput === "XMY哦耶YYDS") {
-                localStorage.setItem('passToken', 'true');
-                showMainContent();
-            } else {
-                alert("通行证错误！");
-            }
-        });
-
-        document.getElementById('skipTokenButton').addEventListener('click', () => {
-            showMainContent();
-        });
-
-        function showMainContent() {
-            tokenPrompt.style.display = 'none';
+        // 页面加载时直接显示主内容
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainSection = document.getElementById('mainContent');
             mainSection.style.display = 'block';
 
+            // 加载本地存储的用户信息
             const customName = localStorage.getItem('customName') || '未设置';
             const kongtongId = localStorage.getItem('kongtongId') || '未设置';
             const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
@@ -202,159 +192,106 @@
             document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
             document.getElementById('avatar').src = avatarUrl;
 
-            if (!passToken) {
-                document.getElementById('myButton').style.display = 'none';
-            }
-        }
-    </script>
-<script>
-    // 处理点击购买卡密按钮
-    function handleMyButtonClick() {
-        const button = document.getElementById('myButton');
-        button.classList.add('clicked');
-        console.log('点击了第一个按钮，即将跳转到:', 'https://shop.xiaoman.top//links/86495D7F');
-        window.open('https://shop.xiaoman.top//links/86495D7F', '_blank');
-    }
-
-    // 处理免费观看《哪吒之魔童闹海》按钮
-    function handleAnotherButtonClick() {
-        const button = document.getElementById('anotherButton');
-        button.classList.add('clicked');
-        console.log('点击了第二个按钮，即将跳转到:', 'https://www.123865.com/s/nWMSVv-u0pl');
-        window.open('https://www.123865.com/s/nWMSVv-u0pl', '_blank');
-    }
-
-    // 处理下载15.0安卓通用版本精简版大纪按钮
-    function handleThirdButtonClick() {
-        const button = document.getElementById('thirdButton');
-        button.classList.add('clicked');
-        console.log('点击了第三个按钮，即将跳转到:', 'https://cloud.189.cn/t/y6za2mVRBbAb');
-        window.open('https://cloud.189.cn/t/y6za2mVRBbAb', '_blank');
-    }
-
-    // 处理下载15.0安卓通用版本原包大纪按钮
-    function handleFourthButtonClick() {
-        const button = document.getElementById('fourthButton');
-        button.classList.add('clicked');
-        console.log('点击了第四个按钮，即将跳转到:', 'https://cloud.189.cn/t/YzU7ryIvIJRj');
-        window.open('https://cloud.189.cn/t/YzU7ryIvIJRj', '_blank');
-    }
-
-    // 处理加入官方QQ频道按钮
-    function handleQQGroupButtonClick() {
-        const button = document.getElementById('qqGroupButton');
-        button.classList.add('clicked');
-        console.log('点击了加入QQ群按钮，即将跳转到QQ群链接');
-        window.open('https://pd.qq.com/s/4nt0053to?businessType=5', '_blank');
-    }
-
-    // 处理查阅图片按钮
-    function handleViewImageButton() {
-        const button = document.getElementById('viewImageButton');
-        button.classList.add('clicked');
-        console.log('点击了查阅图片按钮，即将显示图片');
-        alert('即将显示图片，请稍等...');
-        // 这里可以替换为实际的图片查看逻辑，例如在一个新的窗口中打开图片
-        window.open('https://index-tpgszhqlask-ysc-oplyvayipt.cn-shenzhen.fcapp.run/image?src=2025/2/9/1739095615722.jpg&mimetype=image/jpg', '_blank');
-    }
-
-    // 处理个人信息按钮
-    function handlePersonalInfoButtonClick() {
-        const modal = document.getElementById('personalInfoModal');
-        modal.style.display = 'block';
-        // 从本地存储读取数据并填充到表单
-        const customName = localStorage.getItem('customName') || '';
-        const kongtongId = localStorage.getItem('kongtongId') || '';
-        document.getElementById('customName').value = customName;
-        document.getElementById('kongtongId').value = kongtongId;
-        // 尝试从本地存储加载头像
-        const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
-        document.getElementById('avatar').src = avatarUrl;
-    }
-
-    // 处理关闭个人信息模态框
-    function closePersonalInfoModal() {
-        const modal = document.getElementById('personalInfoModal');
-        modal.style.display = 'none';
-    }
-
-    // 处理个人信息表单提交
-    function handlePersonalInfoFormSubmit(event) {
-        event.preventDefault();
-        const customName = document.getElementById('customName').value;
-        const customAvatarInput = document.getElementById('customAvatar');
-        const kongtongId = document.getElementById('kongtongId').value;
-
-        // 保存到本地存储
-        localStorage.setItem('customName', customName);
-        localStorage.setItem('kongtongId', kongtongId);
-
-        // 处理头像上传
-        if (customAvatarInput.files.length > 0) {
-            const customAvatarFile = customAvatarInput.files[0];
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const avatarUrl = e.target.result;
-                localStorage.setItem('customAvatar', avatarUrl);
-                document.getElementById('avatar').src = avatarUrl;
-            };
-            reader.readAsDataURL(customAvatarFile);
-        }
-
-        // 更新用户信息显示
-        document.getElementById('customNameDisplay').textContent = `自定义名称：${customName}`;
-        document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
-
-        console.log('自定义名称:', customName);
-        console.log('自定义头像已更新');
-        console.log('WT号:', kongtongId);
-
-        closePersonalInfoModal();
-    }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // 检查本地存储中是否有通行证信息
-        const passToken = localStorage.getItem('passToken') === 'true';
-
-        const tokenPrompt = document.getElementById('tokenPrompt');
-        const mainSection = document.getElementById('mainSection');
-
-        if (passToken) {
-            showMainContent();
-        } else {
-            tokenPrompt.style.display = 'block';
-        }
-
-        document.getElementById('passTokenButton').addEventListener('click', () => {
-            const passTokenInput = prompt("请输入通行证(XMY哦耶YYDS)：");
-            if (passTokenInput === "XMY哦耶YYDS") {
-                localStorage.setItem('passToken', 'true');
-                showMainContent();
-            } else {
-                alert("通行证错误！");
+            // 首次访问引导提示
+            if (!localStorage.getItem('firstVisit')) {
+                alert("欢迎来到 Walking Technology 频道官网！🎉\n\n以下是功能按钮介绍：\n- 购买卡密：获取专属服务\n- 免费观看：享受热门影视\n- 下载资源：获取最新版本\n- 加入QQ群：交流心得\n- 个人信息：自定义头像和WT号");
+                localStorage.setItem('firstVisit', 'true');
             }
         });
 
-        document.getElementById('skipTokenButton').addEventListener('click', () => {
-            showMainContent();
-        });
+        // 处理按钮点击事件
+        function handleMyButtonClick() {
+            const button = document.getElementById('myButton');
+            button.classList.add('clicked');
+            button.style.backgroundColor = "#c23616"; // 按钮按下时颜色变深
+            setTimeout(() => {
+                button.style.backgroundColor = ""; // 恢复默认颜色
+            }, 200);
+            window.open('https://shop.xiaoman.top//links/86495D7F', '_blank');
+        }
 
-        function showMainContent() {
-            tokenPrompt.style.display = 'none';
-            mainSection.style.display = 'block';
+        function handleAnotherButtonClick() {
+            const button = document.getElementById('anotherButton');
+            button.classList.add('clicked');
+            button.style.backgroundColor = "#2d493d"; // 按钮按下时颜色变深
+            setTimeout(() => {
+                button.style.backgroundColor = ""; // 恢复默认颜色
+            }, 200);
+            window.open('https://www.123865.com/s/nWMSVv-u0pl', '_blank');
+        }
 
-            const customName = localStorage.getItem('customName') || '未设置';
-            const kongtongId = localStorage.getItem('kongtongId') || '未设置';
+        function handleThirdButtonClick() {
+            const button = document.getElementById('thirdButton');
+            button.classList.add('clicked');
+            button.style.backgroundColor = "#8a7c0f"; // 按钮按下时颜色变深
+            setTimeout(() => {
+                button.style.backgroundColor = ""; // 恢复默认颜色
+            }, 200);
+            window.open('https://cloud.189.cn/t/y6za2mVRBbAb', '_blank');
+        }
+
+        function handleFourthButtonClick() {
+            const button = document.getElementById('fourthButton');
+            button.classList.add('clicked');
+            button.style.backgroundColor = "#5a189a"; // 按钮按下时颜色变深
+            setTimeout(() => {
+                button.style.backgroundColor = ""; // 恢复默认颜色
+            }, 200);
+            window.open('https://cloud.189.cn/t/YzU7ryIvIJRj', '_blank');
+        }
+
+        function handleQQGroupButtonClick() {
+            const button = document.getElementById('qqGroupButton');
+            button.classList.add('clicked');
+            button.style.backgroundColor = "#003049"; // 按钮按下时颜色变深
+            setTimeout(() => {
+                button.style.backgroundColor = ""; // 恢复默认颜色
+            }, 200);
+            window.open('https://pd.qq.com/s/4nt0053to?businessType=5', '_blank');
+        }
+
+        function handlePersonalInfoButtonClick() {
+            const modal = document.getElementById('personalInfoModal');
+            modal.style.display = 'block';
+
+            const customName = localStorage.getItem('customName') || '';
+            const kongtongId = localStorage.getItem('kongtongId') || '';
             const avatarUrl = localStorage.getItem('customAvatar') || 'https://via.placeholder.com/80';
+
+            document.getElementById('customName').value = customName;
+            document.getElementById('kongtongId').value = kongtongId;
+            document.getElementById('avatar').src = avatarUrl;
+        }
+
+        function closePersonalInfoModal() {
+            const modal = document.getElementById('personalInfoModal');
+            modal.style.display = 'none';
+        }
+
+        function handlePersonalInfoFormSubmit(event) {
+            event.preventDefault();
+
+            const customName = document.getElementById('customName').value;
+            const customAvatarInput = document.getElementById('customAvatar');
+            const kongtongId = document.getElementById('kongtongId').value;
+
+            localStorage.setItem('customName', customName);
+            localStorage.setItem('kongtongId', kongtongId);
+
+            if (customAvatarInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const avatarUrl = e.target.result;
+                    localStorage.setItem('customAvatar', avatarUrl);
+                    document.getElementById('avatar').src = avatarUrl;
+                };
+                reader.readAsDataURL(customAvatarInput.files[0]);
+            }
 
             document.getElementById('customNameDisplay').textContent = `自定义名称：${customName}`;
             document.getElementById('kongtongIdDisplay').textContent = `WT号：${kongtongId}`;
-            document.getElementById('avatar').src = avatarUrl;
 
-            if (!passToken) {
-                document.getElementById('myButton').style.display = 'none';
-            }
+            closePersonalInfoModal();
         }
 
         // 绑定按钮事件
@@ -363,11 +300,9 @@
         document.getElementById('thirdButton').addEventListener('click', handleThirdButtonClick);
         document.getElementById('fourthButton').addEventListener('click', handleFourthButtonClick);
         document.getElementById('qqGroupButton').addEventListener('click', handleQQGroupButtonClick);
-        document.getElementById('viewImageButton').addEventListener('click', handleViewImageButton);
         document.getElementById('personalInfoButton').addEventListener('click', handlePersonalInfoButtonClick);
         document.querySelector('.close').addEventListener('click', closePersonalInfoModal);
         document.getElementById('personalInfoForm').addEventListener('submit', handlePersonalInfoFormSubmit);
-    });
-</script>
+    </script>
 </body>
 </html>
