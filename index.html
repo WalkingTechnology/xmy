@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Technology</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #bgVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1; /* 保持视频在底层 */
+        }
+
+        .container {
+            position: relative;
+            z-index: 1; /* 新增层级设置 */
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 其余样式保持不变... */
+        .gradient-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1), 
+                rgba(255,255,255,0.2));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-button span {
+            display: block;
+            font-weight: 500;
+            position: relative;
+            background: linear-gradient(
+                90deg,
+                #ff0000,
+                #ff8000,
+                #ffff00,
+                #00ff00,
+                #00ffff,
+                #0000ff,
+                #8000ff,
+                #ff0080
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 8s linear infinite;
+            text-shadow: 0 0 12px currentColor, 
+                        0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                       0 0 12px rgba(255, 255, 255, 0.4);
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        #audioControl {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted id="bgVideo">
+        <source src="https://alimov2.a.kwimgs.com/upic/2025/03/15/11/BMjAyNTAzMTUxMTQ1NTlfMTA5NjYzNzQwMV8xNTkyNzM3MDY3OThfMF8z_b_Bff6787f86b2c9d3bb3708cc524c1ef17.mp4?tag=1-1742021815-unknown-0-nqzjbl7hf8-4cc71eb1ecce6afd&clientCacheKey=3xxs63t3p4sq8hk_b.mp4&bp=10000&tt=b&ss=vp" type="video/mp4">
+    </video>
+
+    <div id="audioControl" onclick="toggleAudio()">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <div class="container">
+        <h1>Walking Technology 频道官网v3.0</h1>
+        <p>庆祝《哪吒之魔童闹海》荣登全球票房榜TOP5特赠送以下5张体验卡
+        5kE1Upqw走路科技3.2OXiSyKu 2PN0Z7FZ走路科技3.2R7EDVyr xlGBZcly走路科技3.2nZU1K8S 5AcHHvDh走路科技3.2hnPKIqN k59Gd59x走路科技3.2GjUeWZa
+</p>
+
+        <button id="myButton" class="gradient-button">
+            <span><i class="fas fa-shopping-cart mr-2"></i>Walking Technology商城</span>
+        </button>
+        <button id="anotherButton" class="gradient-button">
+            <span><i class="fas fa-brain mr-2"></i>深度思考(R1满血)</span>
+        </button>
+        <button id="thirdButton" class="gradient-button">
+            <span><i class="fas fa-download mr-2"></i>下载15.0安卓通用版本精简版大纪(访问码:c0hv)</span>
+        </button>
+        <button id="fourthButton" class="gradient-button">
+            <span><i class="fas fa-download mr-2"></i>下载15.0安卓通用版本原包大纪(访问码:3hbd)</span>
+        </button>
+        <button id="qqGroupButton" class="gradient-button">
+            <span><i class="fab fa-qq mr-2"></i>加入Walking Technology官方频道</span>
+        </button>
+    </div>
+
+    <script>
+        // 音频控制功能
+        const video = document.getElementById('bgVideo');
+        const audioControl = document.getElementById('audioControl');
+        let isMuted = true;
+
+        function toggleAudio() {
+            isMuted = !isMuted;
+            video.muted = isMuted;
+            audioControl.innerHTML = isMuted ? 
+                '<i class="fas fa-volume-mute"></i>' : 
+                '<i class="fas fa-volume-up"></i>';
+        }
+
+        // 自动尝试播放视频（需要用户交互）
+        document.addEventListener('click', function initAudio() {
+            video.play();
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
+
+        // 按钮功能
+        const createButtonHandler = (url) => () => window.open(url, '_blank');
+        document.getElementById('myButton').addEventListener('click', createButtonHandler('https://shop.xiaoman.top//links/86495D7F'));
+        document.getElementById('anotherButton').addEventListener('click', createButtonHandler('https://chat.deepseek.com/sign_in'));
+        document.getElementById('thirdButton').addEventListener('click', createButtonHandler('https://cloud.189.cn/t/y6za2mVRBbAb'));
+        document.getElementById('fourthButton').addEventListener('click', createButtonHandler('https://cloud.189.cn/t/YzU7ryIvIJRj'));
+        document.getElementById('qqGroupButton').addEventListener('click', createButtonHandler('https://pd.qq.com/s/4nt0053to?businessType=5'));
+    </script>
+</body>
+  </html>
