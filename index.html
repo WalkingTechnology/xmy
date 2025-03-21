@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Technology</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            animation: fadeIn 1s ease-in-out;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 30px rgba(255,255,255,0.3),
+                        inset 0 0 20px rgba(255,255,255,0.2);
+            animation: float 3s ease-in-out infinite;
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .gradient-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4),
+                        inset 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .gradient-button span {
+            background: linear-gradient(90deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00,
+                #00ffff, #0000ff, #8b00ff);
+            background-size: 400% 100%;
+            animation: gradientFlow 8s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            text-shadow: 0 0 12px rgba(255,255,255,0.7);
+            display: block;
+        }
+
+        .gradient-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                transparent 25%,
+                rgba(255,255,255,0.2) 50%,
+                transparent 75%);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            100% { transform: rotate(360deg); }
+        }        h1 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContent">
+        <h1 class="text-3xl font-bold mb-6">Walking Technology 频道官网v3.1</h1>
+        <p class="text-gray-300">Walking Technology 频道官网v3.1版本已更新,大纪预计能用到4月11日,16.0更新日期请等待通知</p>
+
+        <button id="myButton" class="gradient-button"><span><i class="fas fa-shopping-cart mr-2"></i>Walking Technology商城</span></button>
+        <button id="anotherButton" class="gradient-button"><span><i class="fas fa-brain mr-2"></i>深度思考(R1满血)</span></button>
+        <button id="thirdButton" class="gradient-button"><span><i class="fas fa-download mr-2"></i>下载15.0安卓通用版本精简版大纪(访问码:c0hv)</span></button>
+        <button id="fourthButton" class="gradient-button"><span><i class="fas fa-download mr-2"></i>下载15.0安卓通用版本原包大纪(访问码:3hbd)</span></button>
+        <button id="qqGroupButton" class="gradient-button"><span><i class="fab fa-qq mr-2"></i>加入官方QQ频道</span></button>
+    </div>
+
+    <!-- 背景音乐 -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="https://c2.cloud887325.com/1742571594618/152215/d8593e5d7e6b382de0e34e4d05781cc9.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 自动播放背景音乐处理
+            document.addEventListener('click', function() {
+                const audio = document.getElementById('backgroundMusic');
+                audio.play().catch(() => {});
+                document.removeEventListener('click', this);
+            });
+        });
+
+        function handleButtonClick(url) {
+            return function() {
+                window.open(url, '_blank');
+            };
+        }
+
+        document.getElementById('myButton').addEventListener('click', 
+            handleButtonClick('https://shop.xiaoman.top//links/86495D7F'));
+        
+        document.getElementById('anotherButton').addEventListener('click', 
+            handleButtonClick('https://chat.deepseek.com/sign_in'));
+        
+        document.getElementById('thirdButton').addEventListener('click', 
+            handleButtonClick('https://cloud.189.cn/t/y6za2mVRBbAb'));
+        
+        document.getElementById('fourthButton').addEventListener('click', 
+            handleButtonClick('https://cloud.189.cn/t/YzU7ryIvIJRj'));
+        
+        document.getElementById('qqGroupButton').addEventListener('click', 
+            handleButtonClick('https://pd.qq.com/s/4nt0053to?businessType=5'));
+    </script>
+</body>
+</html>
